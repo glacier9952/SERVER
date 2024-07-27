@@ -273,14 +273,13 @@ def show_command_logs(message):
 
 @bot.message_handler(commands=['help'])
 def show_help(message):
-    help_text ='''🤖 Available commands:
-💥 /bgmi : Method For Bgmi Servers. 
-💥 /rules : Please Check Before Use !!.
-💥 /mylogs : To Check Your Recents Attacks.
-💥 /plan : Checkout Our Botnet Rates.
+    help_text ='''Available commands:
 
-🤖 To See Admin Commands:
-💥 /admincmd : Shows All Admin Commands.
+- /bgmi - Method for BGMI servers
+- /rules - Please check the rules before use
+- /mylogs - Check your recent attacks
+- /plan - Check out our botnet rates
+- /admincmd - Shows all admin commands (for admin use only)
 
 '''
     for handler in bot.message_handlers:
@@ -339,12 +338,12 @@ def welcome_plan(message):
     user_name = message.from_user.first_name
     response = f'''Dear {user_name}, Admin Commands Are Here!!:
 
-/add <userId> - Add a user
-/remove <userId> - Remove a user
-/allusers - List authorized users
-/logs - View all user logs
-/broadcast - Send a broadcast message
-/clearlogs - Clear the logs file
+- /add <userId> - Add a user
+- /remove <userId> - Remove a user
+- /allusers - List authorized users
+- /logs - View all user logs
+- /broadcast - Send a broadcast message
+- /clearlogs - Clear the logs file
 '''
     bot.reply_to(message, response)
 
