@@ -61,12 +61,12 @@ def clear_logs():
     try:
         with open(LOG_FILE, "r+") as file:
             if file.read() == "":
-                response = "Logs are already cleared. No data found ."
+                response = "The logs have already been cleared, and as a result, no data was found."
             else:
                 file.truncate(0)
-                response = "Logs cleared successfully ✅"
+                response = "The logs have been successfully cleared."
     except FileNotFoundError:
-        response = "No logs found to clear."
+        response = "No logs to clear."
     return response
 
 # Function to record command logs
@@ -93,13 +93,13 @@ def add_user(message):
                 allowed_user_ids.append(user_to_add)
                 with open(USER_FILE, "a") as file:
                     file.write(f"{user_to_add}\n")
-                response = f"User {user_to_add} Added Successfully 👍."
+                response = f"User {user_to_add} added successfully."
             else:
-                response = "User already exists 🤦‍♂️."
+                response = "User already exists."
         else:
-            response = "Please specify a user ID to add 😒."
+            response = "Please specify a user ID to add."
     else:
-        response = "ONLY OWNER CAN USE."
+        response = "ONLY OWNER CAN USE THIS COMMAND."
 
     bot.reply_to(message, response)
 
@@ -117,14 +117,14 @@ def remove_user(message):
                 with open(USER_FILE, "w") as file:
                     for user_id in allowed_user_ids:
                         file.write(f"{user_id}\n")
-                response = f"User {user_to_remove} removed successfully 👍."
+                response = f"User {user_to_remove} removed successfully."
             else:
-                response = f"User {user_to_remove} not found in the list ."
+                response = f"User {user_to_remove} not found in the list."
         else:
             response = '''Please Specify A User ID to Remove. 
 ✅ Usage: /remove <userid>'''
     else:
-        response = "ONLY OWNER CAN USE."
+        response = "ONLY OWNER CAN USE THIS COMMAND."
 
     bot.reply_to(message, response)
 
@@ -137,14 +137,14 @@ def clear_logs_command(message):
             with open(LOG_FILE, "r+") as file:
                 log_content = file.read()
                 if log_content.strip() == "":
-                    response = "Logs are already cleared. No data found ."
+                    response = "The logs have already been cleared, and as a result, no data was found."
                 else:
                     file.truncate(0)
-                    response = "Logs Cleared Successfully ✅"
+                    response = "The logs have been successfully cleared.""
         except FileNotFoundError:
-            response = "Logs are already cleared ."
+            response = "No logs to clear."
     else:
-        response = "ONLY OWNER CAN USE."
+        response = "ONLY OWNER CAN USE THIS COMMAND."
     bot.reply_to(message, response)
 
  
@@ -170,7 +170,7 @@ def show_all_users(message):
         except FileNotFoundError:
             response = "No data found "
     else:
-        response = "ONLY OWNER CAN USE."
+        response = "ONLY OWNER CAN USE THIS COMMAND."
     bot.reply_to(message, response)
 
 
@@ -189,7 +189,7 @@ def show_recent_logs(message):
             response = "No data found "
             bot.reply_to(message, response)
     else:
-        response = "ONLY OWNER CAN USE."
+        response = "ONLY OWNER CAN USE THIS COMMAND."
         bot.reply_to(message, response)
 
 
@@ -296,7 +296,7 @@ def show_help(message):
 @bot.message_handler(commands=['start'])
 def welcome_start(message):
     user_name = message.from_user.first_name
-    response = f'''👋🏻Welcome to Your Home, {user_name}! Feel Free to Explore.
+    response = f'''👋🏻Welcome to Home, {user_name}! Feel Free to Explore.
 🤖Try To Run This Command : /help 
 '''
     bot.reply_to(message, response)
@@ -304,41 +304,47 @@ def welcome_start(message):
 @bot.message_handler(commands=['rules'])
 def welcome_rules(message):
     user_name = message.from_user.first_name
-    response = f'''{user_name} Please Follow These Rules ⚠️:
+    response = f'''Dear {user_name}, Important Rules to Avoid Ban ⚠️:
 
-1. Dont Run Too Many Attacks !! Cause A Ban From Bot
-2. Dont Run 2 Attacks At Same Time Becz If U Then U Got Banned From Bot. 
-3. We Daily Checks The Logs So Follow these rules to avoid Ban!!'''
+1. Avoid running too many attacks, as this may result in a ban from the bot.
+2. Do not run two attacks simultaneously, as this will lead to a ban from the bot.
+3. Please note that we conduct daily log checks, so it's essential to follow these rules to avoid a ban.'''
     bot.reply_to(message, response)
 
 @bot.message_handler(commands=['plan'])
 def welcome_plan(message):
     user_name = message.from_user.first_name
-    response = f'''{user_name}, Brother Only 1 Plan Is Powerfull Then Any Other Ddos !!:
+    response = f'''Dear {user_name}, Only one plan is more powerful than any other DDoS attack!
 
-Vip 🌟 :
--> Attack Time : 180 (S)
-> After Attack Limit : 5 Min
--> Concurrents Attack : 3
+VIP Plan
+-Attack Time: 540 seconds
+-After Attack Limit: 5 minutes
+-Concurrent Attacks: 3
 
-Pr-ice List💸 :
-Day-->100 Rs
-Week-->400 Rs
-Month-->800 Rs
-'''
+Price List:
+
+-Daily: ₹100
+-Weekly: ₹400
+-Monthly: ₹800
+
+Try Before You Buy!
+
+We also offer trials for those who want to test our services before committing to a purchase.
+
+For purchasing or trial inquiries, please contact @GLACIER9952 on Telegram.'''
     bot.reply_to(message, response)
 
 @bot.message_handler(commands=['admincmd'])
 def welcome_plan(message):
     user_name = message.from_user.first_name
-    response = f'''{user_name}, Admin Commands Are Here!!:
+    response = f'''Dear {user_name}, Admin Commands Are Here!!:
 
-💥 /add <userId> : Add a User.
-💥 /remove <userid> Remove a User.
-💥 /allusers : Authorised Users Lists.
-💥 /logs : All Users Logs.
-💥 /broadcast : Broadcast a Message.
-💥 /clearlogs : Clear The Logs File.
+/add <userId> - Add a user
+/remove <userId> - Remove a user
+/allusers - List authorized users
+/logs - View all user logs
+/broadcast - Send a broadcast message
+/clearlogs - Clear the logs file
 '''
     bot.reply_to(message, response)
 
@@ -357,11 +363,11 @@ def broadcast_message(message):
                         bot.send_message(user_id, message_to_broadcast)
                     except Exception as e:
                         print(f"Failed to send broadcast message to user {user_id}: {str(e)}")
-            response = "Broadcast Message Sent Successfully To All Users 👍."
+            response = "Broadcast Message Sent Successfully To All Users."
         else:
-            response = "🤖 Please Provide A Message To Broadcast."
+            response = "Please Provide A Message To Broadcast."
     else:
-        response = "ONLY OWNER CAN USE."
+        response = "ONLY OWNER CAN USE THIS COMMAND."
 
     bot.reply_to(message, response)
 
