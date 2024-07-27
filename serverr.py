@@ -140,7 +140,7 @@ def clear_logs_command(message):
                     response = "The logs have already been cleared, and as a result, no data was found."
                 else:
                     file.truncate(0)
-                    response = "The logs have been successfully cleared.""
+                    response = "The logs have been successfully cleared."
         except FileNotFoundError:
             response = "No logs to clear."
     else:
